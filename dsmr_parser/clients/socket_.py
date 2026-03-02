@@ -48,12 +48,12 @@ class SocketReader(object):
 
                 for data in lines:
                     try:
-                        self.telegram_buffer.append(data.decode('ascii'))
+                        self.telegram_buffer.append(data.decode('ascii', errors='ignore'))
+                        # print(data.decode('ascii', errors='ignore'))
                     except UnicodeDecodeError:
                         # Some garbage came through the channel
                         # E.g.: Happens at EON_HUNGARY, but only once at the start of the socket.
                         logger.error('Failed to parse telegram due to unicode decode error')
-
                 for telegram in self.telegram_buffer.get_all():
                     try:
                         yield self.telegram_parser.parse(telegram)

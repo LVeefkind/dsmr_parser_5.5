@@ -6,8 +6,10 @@ import re
 # checksum that's found.
 # - The checksum is optional '{0,4}' because not all telegram versions
 # support it.
-_FIND_TELEGRAMS_REGEX = re.compile(r"\/[^\/]+?\![A-F0-9]{0,4}\0?\r\n", re.DOTALL)
-
+_FIND_TELEGRAMS_REGEX = re.compile(
+    r"(?:/?(?:\d+-\d+:|/)[\s\S]+?\![A-F0-9]{4})",
+    re.DOTALL
+)
 
 class TelegramBuffer(object):
     """
@@ -25,6 +27,8 @@ class TelegramBuffer(object):
         """
         for telegram in _FIND_TELEGRAMS_REGEX.findall(self._buffer):
             self._remove(telegram)
+            print('oke')
+            print(telegram)
             yield telegram
 
     def append(self, data):
