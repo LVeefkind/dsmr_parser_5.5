@@ -289,7 +289,7 @@ V4 = {
 }
 
 V5 = {
-    'checksum_support': True,
+    'checksum_support': False,
     'objects': [
         {
             'obis_reference': obis.P1_MESSAGE_HEADER,
@@ -486,8 +486,6 @@ V5 = {
     ]
 }
 
-V5_5 = deepcopy(V5)
-V5_5['checksum_support'] = False
 ALL = (V2_2, V3, V4, V5)
 
 BELGIUM_FLUVIUS = {
