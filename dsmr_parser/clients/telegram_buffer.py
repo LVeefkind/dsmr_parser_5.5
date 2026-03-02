@@ -27,8 +27,6 @@ class TelegramBuffer(object):
         """
         for telegram in _FIND_TELEGRAMS_REGEX.findall(self._buffer):
             self._remove(telegram)
-            print('oke')
-            print(telegram)
             yield telegram
 
     def append(self, data):
